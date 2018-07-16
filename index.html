@@ -10,7 +10,7 @@
 	<script src="https://code.createjs.com/createjs-2015.05.21.min.js"></script>
 </head>
 <body onload="init();">
-	<canvas id="testCanvas" width="640" height="500" style="border:1px solid #d3d3d3;"></canvas>
+	<canvas id="testCanvas" width="630" height="500" style="border:1px solid #d3d3d3;"></canvas>
 	<div class="absolute"></div>
 	<script>
         
@@ -47,7 +47,7 @@
 		var ball;
 		var bricks = [];
 		var score = 0;
-		var lives = 3;
+		var lives = 50;
 		var scoreText;
 		var gameStarted = false;
 		const KEYCODE_LEFT = 37;
@@ -72,9 +72,9 @@
         var backgroundText = "UGE Magic / W3AI.net";
         var backgroundTextColor = "#ccc";
         var backgroundTextStyle = "60px  Arial";
-        var bgTextX = 15;
+        var bgTextX = 10;
         var bgTextY = 360;
-        var scoreTextX = 15;
+        var scoreTextX = 10;
         
         var paddleColor = "#fff";
         var ballColor = "#fff"; // #ff7700
@@ -175,6 +175,13 @@
 			score+=points;
 			updateStatusLine();
 		}
+        
+        function deductFromScore(points)
+		{
+			score-=points;
+            lives--;
+			updateStatusLine();
+		}
 
 		function createScoreText()
 		{
@@ -187,11 +194,13 @@
 
 		function updateStatusLine()
 		{
-			scoreText.text = "Score: "+score + " / Lives: "+lives+" / High Score: "+highScore;
+			scoreText.text = "Score: "+score + " / Services: "+lives+" / Top Performance: "+highScore;
 		}
 
+        // ToDo - Change this to usedService - no loseLife in this hack!
 		function loseLife()
 		{
+            // Lives are changed to Services - 
 			console.log("Lose A Life");
 			lives--;
 			ball.xSpeed = 0;
@@ -281,9 +290,9 @@
 			{
 				if(checkCollision(ball,services[i]))
 				{
-                    // ToDo - to add some logic for services: available or not etc, cost
-					// addToScore(100);
-					// console.log("Brick Hit / New Score: "+score);
+                    // ToDo - to add some more logic for services: available or not etc, cost
+					deductFromScore(100);
+					console.log("Service Used / New Score: "+score);
 					destroyBrick(services[i]);
 					services.splice(i,1);
 					i--;
