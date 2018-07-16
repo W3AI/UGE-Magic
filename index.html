@@ -15,7 +15,7 @@
 	<script>
         
         // -->> UGE Magic <<--
-        // Stefan Ianta - July 2018 - MIT License or whatever Facebook, TechCrunch, Microsoft 
+        // Stefan Ianta - July 2018 - MIT License and/or whatever Facebook, TechCrunch, Microsoft 
         // and others needs for the Hackathons:
         // 2018 Global/Continental Community Challenge Hackathon / DevPost.com
         // TechCrunch Disrupt Hackathon SF / DevPost
@@ -62,6 +62,11 @@
         // SI: Jul 13, 2018
         // ToDo - Add Second text like: Match World's Top Challenges with World's Top Services
         // or          Match World's Top Challenges to your Top Services
+        var repoText = "github.com/W3AI/UGE-Magic";
+        var repoURL = "https://github.com/W3AI/UGE-Magic";
+        var repoTextStyle = "16px Arial";
+        var repoTextX = 408;
+        var repoTextY = 514;
         var challangeText = "CHALLENGES";
         var cTextX = 112;
         var cTextY = 103;
@@ -71,7 +76,7 @@
         var csTextColor = "whitesmoke";
         var backgroundText = "UGE Magic / W3AI.net";
         var backgroundTextColor = "#ccc";
-        var backgroundTextStyle = "60px  Arial";
+        var backgroundTextStyle = "60px Arial";
         var bgTextX = 10;
         var bgTextY = 360;
         var scoreTextX = 10;
@@ -136,6 +141,12 @@
             text.y = bgTextY;
             text.textBaseline = "alphabetic";
             stage.addChild(text);
+            var textRepo = new createjs.Text(repoText, repoTextStyle, backgroundTextColor);
+            textRepo.x = repoTextX;
+            textRepo.y = repoTextY;
+            textRepo.textBaseline = "alphabetic";
+            stage.addChild(textRepo);
+
         }
 
 		function startLevel()
