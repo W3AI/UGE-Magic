@@ -65,7 +65,9 @@
         var challangeText = "CHALLENGES";
         var cTextX = 112;
         var cTextY = 103;
-        var serviceText   = " SERVICES";
+        var serviceText   = "SERVICES";
+        var sTextX = 165;
+        var sTextY = 634;
         var csTextColor = "whitesmoke";
         var backgroundText = "UGE Magic / W3AI.net";
         var backgroundTextColor = "#ccc";
@@ -424,6 +426,11 @@
                     // ToDo - Calculate ServiceLine and add also a PADDING_BOTTOM
 				}
             // Create Services text
+            var textServices = new createjs.Text(serviceText, backgroundTextStyle, backgroundTextColor);
+            textServices.x = sTextX;
+            textServices.y = sTextY;
+            textServices.textBaseline = "alphabetic";
+            stage.addChild(textServices);
             
 		}
 
