@@ -75,6 +75,7 @@
         var bgTextX = 10;
         var bgTextY = 360;
         var scoreTextX = 10;
+        var scoreTextY = 500;
         
         var paddleColor = "#fff";
         var ballColor = "#fff"; // #ff7700
@@ -117,7 +118,6 @@
 			stage.on("stagemousedown", function(event) 
 				{ 
 					startLevel();
-					
 				});
 
 			stage.on("stagemousemove", function (event)
@@ -187,7 +187,7 @@
 		{
 			scoreText = new createjs.Text("Score: 0", "16px Arial", "#000000");
 			addToScore(0);
-			scoreText.y = stage.canvas.height - 16;
+			scoreText.y = scoreTextY;    // stage.canvas.height - 16;
             scoreText.x = scoreTextX;
 			stage.addChild(scoreText);
 		}
@@ -283,6 +283,14 @@
 					bricks.splice(i,1);
 					i--;
 				}
+                
+                if(bricks.length == 0) 
+                {
+                    gameStarted = false;
+                    lives += 50;
+                    init();
+                }
+                
 			}
             
             // SI: Jul 13, 2018 adding the collision w service bricks
@@ -510,7 +518,7 @@
 		    paddle.height = PADDLE_HEIGHT;
 		    paddle.graphics.beginFill(paddleColor).drawRect(0, 0, paddle.width, paddle.height);
 		    paddle.x = stage.canvas.width/2-PADDLE_WIDTH/2;
-		    paddle.y = stage.canvas.height*0.9;
+		    paddle.y = 470;       // stage.canvas.height*0.9;
 		    paddle.regX = PADDLE_WIDTH/2;
 	        paddle.regY = PADDLE_HEIGHT/2;
 		    paddle.setBounds(paddle.regX,paddle.regY,PADDLE_WIDTH,PADDLE_HEIGHT);
