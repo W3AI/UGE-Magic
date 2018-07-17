@@ -1,4 +1,6 @@
-UGE Magic Story :-)
+[Play the UGE Magic game](game.html)
+
+# UGE Magic Story :-)
 
 Hi,
 I'm Stefan Ianta, I'm from Toronto, Canada and I have great news for you guys.
