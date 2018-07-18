@@ -1,5 +1,9 @@
 [Play the UGE Magic game](game.html)
 
+## Civilization Advances by extending the number of important services which we can engage automatically from the Clouds.
+~ Alfred North Whitehead
+UGE Teams: Here is how to build the World Services Leaderboard
+
 # UGE Magic Story :-)
 
 Hi,
