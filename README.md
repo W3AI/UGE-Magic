@@ -36,7 +36,7 @@ I said,
 This is how I caught them, 
 They murmured things like a random noise, I guess, thinking if they should uncover their identity
 and finaly they answered:
-- We play you guys all on the Universal Game Engine.
+- We simulate you guys all on the Universal Game Engine.
 
 And then they said they are like those Monkeys jumping on keyboards to write Shakespear's works 
 - if you know what stats mean https://en.wikipedia.org/wiki/Infinite_monkey_theorem
