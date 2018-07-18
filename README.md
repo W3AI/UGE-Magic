@@ -1,4 +1,6 @@
-[Play the UGE Magic game](game.html)
+[Play UGE Magic game - FB Community Edition](game.html)
+or 
+[Play the Magic game - White Smoke](game-ws.html)
 
 ### "Civilization advances by extending the number of Important Services which we can engage automatically from the Clouds."
 Alfred North Whitehead 1861 - 1947, I think
