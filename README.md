@@ -1,117 +1,55 @@
-[Play UGE Magic game - FB Community Edition](game.html)
-or 
-[Play the Magic game - White Smoke](game-ws.html)
+[Play CHALLENGES BUILD WORLD UNITY](game-ws.html)
 
-### "Civilization advances by extending the number of Important Services which we can engage automatically from the Clouds."
-Alfred North Whitehead 1861 - 1947, I think
+# UGE Story
 
-### UGE Teams: Here is how to build the 
-## World Services Leaderboard
+Remember when Elon Musk said that very likely we live in a simulation computer of an advanced civilization?
 
-# UGE Magic Story :-)
+Let's suppose for a moment that he was right, if our reality is a simulation, the nature of our reality must adhere to the design choices of its architects.
 
-Hi,
-I'm Stefan Ianta, I'm from Toronto, Canada and I have great news for you guys.
-Do you remember when Elon Musk said that very likely we live in a simulation computer of an advanced civilization?
-Genius - eh, he was right, they exist and they simulate our consciousness and every live cell on Earth right now!
+One notable property of our reality is chaos, as defined by the laws of thermodynamics. 
+Another notable property is the passage of time. 
 
-This is how they contacted me:
+Time is an interesting design pattern, as it allows for change within a system. Coupled with chaos, 
+the overall effect we've observed is that anything that exists in our reality must be able to survive 
+the chaos around it. 
 
-I was coughing and hawking one morning when I got a call:
-- Stephen Hawking?
-I said:
-- No, Stefan Ianta from Toronto - w3ai.net
-and they said - there were several voices:
-- Cool, please tell Stephen Hawking to make a correction for his interview in 2014:
+Perhaps the best known example of such a surviving system is biological life. Through a process we've dubbed "evolution"
+biological systems are "graded" based on their ability to survive. Over millennia, these biological systems have resulted
+in the human race. 
 
-(on screen the quote: We are all now connected by the Internet, like neurons in a giant brain. -Stephen Hawking)
+Continuing on this train of thought, our evolution could be thought of as analogous to the infinite monkey
+theorem (https://en.wikipedia.org/wiki/Infinite_monkey_theorem) . Only instead of producing Shakespeare's 
+works, they happened to produce the human race.
 
-- we wanted him to say "in a UGE brain". Not "giant" but "UGE".
+But to complete the infinite monkey analogy, we'd have to identify what the monkey operated keyboards
+were influencing in our reality, and how. 
 
-I asked: 
-- what is UGE?
-- Universal Game Engine
+To keep things simple let's suppose that the keyboards were hooked up to the computer running our reality 
+and that they were editing files of a sort of Universal Game Engine or UGE for short. 
 
-I said,
-- wow - Could you send me a link? Who is using UGE? 
+UGE files would have to describe components of systems that interact with each other in our reality.
 
-This is how I caught them, 
-They murmured things like a random noise, I guess, thinking if they should uncover their identity
-and finaly they answered:
-- We simulate you guys all on the Universal Game Engine.
+For two components to successfully interact, the inputs of one component, must match with the outputs of another.
 
-And then they said they are like those Monkeys jumping on keyboards to write Shakespear's works 
-- if you know what stats mean https://en.wikipedia.org/wiki/Infinite_monkey_theorem
+Since a key property of our reality is the chaos we've previously discussed, exactly which components end
+up interacting together is left to chaos, or the entities which survive with in it. 
 
-They were the guys who worked a couple billion years to write our DNA code. 
-In the begining, they said, they had lots of bugs, and had to drop many DNA branches, 
-but a few hundred million years ago they passed the tests for the first brain genes, 
-then a few million years ago they got the neocortex coded and 
-about 100 thousand years ago they got the first functional gene for language...
-Can you imagine? 
-Just from random jumping on keyboards... I guess, very fast and lots of keyboards... 
+The concept of a UGE on a whole is interesting, but hard to imagine. To help our imaginations cope,
+I've put together a little game that illustrates all of the above concepts. It's based on break out,
+but see what happens when you stop playing it... 
 
-... and on and on they went bragging how great agile parallel coders they are, 
-and how they test on planetary scale environments, 
-and how they have every functional gene engaged automagically right in time
-to simulate all consciouness experiences for us seamlessly 
-without us having to worry about all the DNA work on the backend cell servers 
-- 30 something trillion smart cell servers in each human being - they said.
+[See the simple UGE example here](game.html)
 
-I said:
-- Awsome Awsome Awsome - would you guys send me some demos I could 
-share with my friends on GitHub, Facebook, LinkedIn, TechCrunch... ?
+I believe it would be interesting to explore the concept of UGEs on a grander scale, perhaps to handle
+business, technological, and research applications. The design pattern seems to be radically more 
+flexible than the systems we have today.
 
-So I'm preparing their demos here:
-games.w3ai.net
-and some instructions for coders here
-uge.w3ai.net
+My progress to building proof of concepts for larger scope UGEs can be found here:
 
-They said we can simulate anything on their UGE net including business stuff and projects
-and that the biz clients will have no clue that everithing is on auto pilot UGE DNA scripts - kind of js
+[Toronto - Transformative Code Pile 1 Programming](https://www.meetup.com/SocialAI/)
 
-but they said we should still keep appearances and pretend to work hard 
-to not spoil the magic experiences for others, Ok?
+[New York - Manhattan Algorithmic Innovations Reactor](https://www.meetup.com/Manhattan-AIR/)
 
-So for Demo purposes you'll see the balls doing the trick 
-but keep in mind that others might not get it immediatelly.
-They said that for credible life experience they had to 
-hide the browninan balls ticks inside nucleus of the cell processes.
-
-Did you see the Youtube videos with DNA replications? https://www.youtube.com/watch?v=yqESR7E4b_8
-There are trillion of water molecule balls jumping around there running all life threads
-and you still don't see them on youtube - these guys are really advanced Simulators!
-
-So here you can barely see the balls working the magic:
-game.html
-
-Ask your friends to watch from 2 meters back as the default is Full Magic! 
-Watch your Challenges dissapear with or without you working the ball(s).
-
-And stay around as I'm preparing the the demos for the UGE Business Magic.
-
-Have your boss ever asked you to do your magic stuff to get the business going? 
-That's what you'll get shortly.
-
-If you wanna join some of the UGE projects don't hesitate to get in touch. 
-We are building UGE Teams for the Global hackathons this summer to spread the word on UGE Magic:
-Facebook Global Community Challenge - https://devcommunitychallenge.devpost.com/
-TechCrunch Disrupt SF Global Hackathon - https://disruptsf2018.devpost.com/
-MS Office Productivity Hack - https://officehack4.devpost.com/
-
-So if you wanna get on the UGE developers list we are looking for volunteer hackers on 
-FireBase, UX/UI, IOS, Android, HTML5, CreateJS, Google Apps Script, GCP, FB Games, etc
-
-
-And if you are around in Toronto, New York or Halifax don't hesitate to join our W3AI / TCP1P Meetups:
-
-Toronto - Transformative Code Pile 1 Programming
-https://www.meetup.com/SocialAI/
-
-New York - Manhattan Algorithmic Innovations Reactor
-https://www.meetup.com/Manhattan-AIR/
-
-Halifax - Algorithmic Innovations Group
-https://www.meetup.com/HalifaxAIG/
+[Halifax - Algorithmic Innovations Group](https://www.meetup.com/HalifaxAIG/)
 
 enough said - now back to coding those UGE DNA scripts ...
