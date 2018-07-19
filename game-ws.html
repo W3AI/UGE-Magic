@@ -11,7 +11,7 @@
 </head>
 <body onload="init();">
 	<canvas id="testCanvas" width="630" height="500" style="border:1px solid #d3d3d3;"></canvas>
-    <div class="absolute">"Civilization advances by extending the number of <a href="https://github.com/W3AI/UGE-Magic">important services</a> which we can perform without thinking of them." - A. North Whitehead</div>
+<!--  <div class="absolute">"Civilization advances by extending the number of <a href="https://github.com/W3AI/UGE-Magic">important services</a> which we can perform without thinking of them." - A. North Whitehead</div> -->
 	<script>
         
         // -->> UGE Magic <<--
@@ -70,14 +70,14 @@
         var challangeText = "CHALLENGES";
         var cTextX = 112;
         var cTextY = 103;
-        var serviceText   = "SERVICES";
-        var sTextX = 165;
+        var serviceText   = "SOLUTIONS";
+        var sTextX = 142;
         var sTextY = 634;
         var csTextColor = "whitesmoke";
-        var backgroundText = "UGE Magic / W3AI.net";
+        var backgroundText = "BUILD WORLD UNITY";
         var backgroundTextColor = "#ccc";
         var backgroundTextStyle = "60px Arial";
-        var bgTextX = 10;
+        var bgTextX = 5;
         var bgTextY = 360;
         var scoreTextX = 10;
         var scoreTextY = 500;
@@ -205,7 +205,7 @@
 
 		function updateStatusLine()
 		{
-			scoreText.text = "Score: "+score + " / Services: "+lives+" / Top Performance: "+highScore;
+			scoreText.text = "Wins: "+score + " / Solutions: "+lives+" / Top: "+highScore;
 		}
 
         // ToDo - Change this to usedService - no loseLife in this hack!
