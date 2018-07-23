@@ -69,16 +69,18 @@
                     ];
         
         // To build the Project Plan
-        var nrTests = 10;
+        var nrTests = 20;
         var test = 0;
         var testAngle = 360/nrTests;
         var testRad = (2*Math.PI)/nrTests;
-        var testCircleX = 230;
+        var testCircleX = 315;
         var testCircleY = 230;
-        var testCircleR = BRICKS_WIDTH/2*Math.sin(testRad);
+        var testCircleR = 100; // BRICKS_WIDTH/2*Math.sin(testRad);
         // Plan Circle begins at 9 o'clock
         var testX = testCircleX - testCircleR;
         var testY = testCircleY;
+        var circleSize = ( 2 * testCircleR * Math.sin(testRad) ) / BRICKS_WIDTH;
+        console.log(circleSize);
         
         // SI: Jul 13, 2018
         // ToDo - Add Second text like: Match World's Top Challenges with World's Top Services
@@ -545,7 +547,7 @@
             // createjs.Tween.get(brick,{}).to({scaleX:0.5,scaleY:0.5}, 500)
             // createjs.Tween.get(brick,{}).to({scaleX:0.1,scaleY:0.1,rotation:90}, 500)
             createjs.Tween.get(brick,{})
-                .to({scaleX:0.1,scaleY:0.1,rotation:(90 + test*testAngle),x:testX,y:testY}, 500);
+                .to({scaleX:.5,scaleY:.5,rotation:(90 + test*testAngle),x:testX,y:testY}, 500);
             test++;
             // Prep values for next test
             testX = testCircleX - testCircleR*Math.cos(test*testRad);
