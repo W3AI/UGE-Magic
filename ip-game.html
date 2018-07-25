@@ -102,16 +102,16 @@
         var test = 0;                                           // A test is an instance of a request / demand 
         var nrTasks = 10;
         var task = 0;                                           // A task is an instance of a service / offer
-        // TODO - Change test circle variables to plan circle
-        var testAngle = 360/nrTests;
-        var testRad = (2*Math.PI)/nrTests;
-        var testCircleX = 315;
-        var testCircleY = 344;
-        var testCircleR = 100; // BRICKS_WIDTH/2*Math.sin(testRad);
+        // Changed test circle variables to plan circle vars
+        var planAngle = 360/nrTests;
+        var planRad = (2*Math.PI)/nrTests;
+        var planCircleX = 315;
+        var planCircleY = 344;
+        var planCircleR = 100; // BRICKS_WIDTH/2*Math.sin(testRad);
         // Plan Circle begins at 9 o'clock
-        var testX = testCircleX - testCircleR;
-        var testY = testCircleY;
-        var circleSize = ( 2 * testCircleR * Math.sin(testRad) ) / BRICKS_WIDTH;
+        var planX = planCircleX - planCircleR;
+        var planY = planCircleY;
+        var circleSize = ( 2 * planCircleR * Math.sin(planRad) ) / BRICKS_WIDTH;
         console.log(circleSize);
         
         // SI: Jul 13, 2018
@@ -260,7 +260,8 @@
 
 		function updateStatusLine()
 		{
-			scoreText.text = "Profit: "+score + " / Budget: "+lives+" / Top Performance: "+highScore;
+			scoreText.text = "Slack: "+score + " / Budget: "+lives;
+			// scoreText.text = "Profit: "+score + " / Budget: "+lives+" / Top Performance: "+highScore;
 		}
 
         // ToDo - Change this to usedService - no loseLife in this hack!
@@ -581,11 +582,11 @@
             // createjs.Tween.get(brick,{}).to({scaleX:0.5,scaleY:0.5}, 500)
             // createjs.Tween.get(brick,{}).to({scaleX:0.1,scaleY:0.1,rotation:90}, 500)
             createjs.Tween.get(brick,{})
-                .to({scaleX:.5,scaleY:.5,rotation:(90 + test*testAngle),x:testX,y:testY}, 500);
+                .to({scaleX:.5,scaleY:.5,rotation:(90 + test*planAngle),x:planX,y:planY}, 500);
             test++;
             // Prep values for next test
-            testX = testCircleX - testCircleR*Math.cos(test*testRad);
-            testY = testCircleY - testCircleR*Math.sin(test*testRad);
+            planX = planCircleX - planCircleR*Math.cos(test*planRad);
+            planY = planCircleY - planCircleR*Math.sin(test*planRad);
 
 			// setTimeout(removeBrickFromScreen,500,brick)
 		}
