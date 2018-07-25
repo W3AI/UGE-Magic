@@ -99,9 +99,13 @@
         
         // To build the Project Plan
         var nrTests = 10;
-        var test = 0;                                           // A test is an instance of a request / demand 
+        var test = 0;                   // A test is an instance of a request / demand 
+        var scaleTest = 0.5;            // Sugegsting planning a task is cheaper than the task                      
+        
         var nrTasks = 10;
-        var task = 0;                                           // A task is an instance of a service / offer
+        var task = 0;                   // A task is an instance of a service / offer
+        var scaleTask = 1;              // Suggesting a task could be several times more expensive than the simmulation used for planning
+        
         // Changed test circle variables to plan circle vars
         var planAngle = 360/nrTests;
         var planRad = (2*Math.PI)/nrTests;
@@ -369,7 +373,7 @@
                     // ToDo - to add some more logic for services: available or not etc, cost
 					deductFromScore(100);
 					console.log("Service Used / New Score: "+score);
-					destroyBrick(services[i]);
+					destroyService(services[i]);
 					services.splice(i,1);
 					i--;
                     changeBallColor(serviceColor);
@@ -582,15 +586,31 @@
             // createjs.Tween.get(brick,{}).to({scaleX:0.5,scaleY:0.5}, 500)
             // createjs.Tween.get(brick,{}).to({scaleX:0.1,scaleY:0.1,rotation:90}, 500)
             createjs.Tween.get(brick,{})
-                .to({scaleX:.5,scaleY:.5,rotation:(90 + test*planAngle),x:planX,y:planY}, 500);
+                .to({scaleX:scaleTest,scaleY:scaleTest,rotation:(90 + test*planAngle),x:planX,y:planY}, 500);
             test++;
             // Prep values for next test
             planX = planCircleX - planCircleR*Math.cos(test*planRad);
             planY = planCircleY - planCircleR*Math.sin(test*planRad);
 
-			// setTimeout(removeBrickFromScreen,500,brick)
+			// setTimeout(removeBrickFromScreen,30000,brick);  // TODO - to force quick execution of plan while in attention span - 30000 = 30seconds ~ attention span
 		}
 
+		function destroyService(brick)
+		{
+			// createjs.Tween.get(brick,{}).to({scaleX:0,scaleY:0}, 500)
+            // createjs.Tween.get(brick,{}).to({scaleX:0.5,scaleY:0.5}, 500)
+            // createjs.Tween.get(brick,{}).to({scaleX:0.1,scaleY:0.1,rotation:90}, 500)
+            createjs.Tween.get(brick,{})
+                .to({scaleX:scaleTask,scaleY:scaleTask,rotation:(90 + test*planAngle),x:planX,y:planY}, 500);
+            test++;
+            // Prep values for next test
+            planX = planCircleX - planCircleR*Math.cos(test*planRad);
+            planY = planCircleY - planCircleR*Math.sin(test*planRad);
+
+			// setTimeout(removeBrickFromScreen,30000,brick);  // TODO - to force quick execution of plan while in attention span - 30000 = 30seconds ~ attention span
+		}
+
+        
 		function removeBrickFromScreen(brick)
 		{
 			stage.removeChild(brick)
