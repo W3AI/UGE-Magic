@@ -81,17 +81,28 @@
         
         var brickColor = '#000FFF';
         
-        var tasks = [["a","2","3","4","5","6","7","8","9","0"],
+         var tests = [["a","2","3","4","5","6","7","8","9","0"],
                      ["0","b","2","3","4","5","6","7","8","9"],
                      ["0","0","c","2","3","4","5","6","7","8"],
                      ["0","0","0","d","2","3","4","5","6","7"],
                      ["0","0","0","0","e","2","3","4","5","6"],
                      ["1","1","1","1","1","1","1","1","1","1"]
+                    ];       
+        
+        var tasks = [["1","1","1","1","1","1","1","1","1","1"],
+                     ["0","b","2","3","4","5","6","7","8","9"],
+                     ["0","0","c","2","3","4","5","6","7","8"],
+                     ["0","0","0","d","2","3","4","5","6","7"],
+                     ["0","0","0","0","e","2","3","4","5","6"],
+                     ["0","0","0","0","0","0","0","0","0","0"]
                     ];
         
         // To build the Project Plan
         var nrTests = 10;
-        var test = 0;
+        var test = 0;                                           // A test is an instance of a request / demand 
+        var nrTasks = 10;
+        var task = 0;                                           // A task is an instance of a service / offer
+        // TODO - Change test circle variables to plan circle
         var testAngle = 360/nrTests;
         var testRad = (2*Math.PI)/nrTests;
         var testCircleX = 315;
@@ -111,14 +122,14 @@
         var repoTextStyle = "16px Arial";
         var repoTextX = 408;
         var repoTextY = 514;
-        var challangeText = "Projects";
+        var challangeText = "tests";
         var cTextX = 112;
         var cTextY = 103;
-        var serviceText   = "Services";
+        var serviceText   = "tasks";
         var sTextX = 165;
         var sTextY = 634;
         var csTextColor = "#ccc";     // "whitesmoke"; 
-        var backgroundText = "circles";
+        var backgroundText = "plan";
         var backgroundTextColor = "#ccc";
         var backgroundTextStyle = "60px Arial";
         var bgTextX = 230;
@@ -481,7 +492,7 @@
 				for(var j = 0;j<problem_rows;j++)
 				{
 					// Adding mapping logic from the tasks matrix - if tasks[i*j] == 1 -> create task brick
-                    if (tasks[j][i] == "1") {
+                    if (tests[j][i] == "1") {
                           createBrick(i*(BRICKS_WIDTH+BETWEEN_COLS)+PADDING_LEFT,j*(BRICKS_HEIGHT+BETWEEN_ROWS)+PADDING_TOP);
 //                        createBrickRotate(i*(BRICKS_WIDTH+BETWEEN_COLS)+PADDING_LEFT,j*(BRICKS_HEIGHT+BETWEEN_ROWS)+PADDING_TOP, i*j);  // angle = i+j
                         }
@@ -501,8 +512,9 @@
 			for(var i = 0;i<service_cols;i++)
 				for(var j = 0;j<service_rows;j++)
 				{
-					createService(i*(BRICKS_WIDTH+BETWEEN_COLS)+PADDING_LEFT,j*(BRICKS_HEIGHT+BETWEEN_ROWS) + serviceLine); 
-                    // ToDo - Calculate ServiceLine and add also a PADDING_BOTTOM
+                    if (tasks[j][i] == "1") {
+					   createService(i*(BRICKS_WIDTH+BETWEEN_COLS)+PADDING_LEFT,j*(BRICKS_HEIGHT+BETWEEN_ROWS) + serviceLine); 
+                    }
 				}
             // Create Services text
             var textServices = new createjs.Text(serviceText, backgroundTextStyle, backgroundTextColor);
