@@ -107,7 +107,7 @@
                         '#9999ff'
                         ];
         
-        var planStep = 1;
+        var testPlanStep = 1;
         
         var planed  = [1,2,3,4,5,6,7,8,9,10]
         
@@ -132,6 +132,8 @@
                         '#88ff88',
                         '#99ff99'
                         ];
+        
+        var taskPlanStep = 1;
 
         
         // To build the Project Plan
@@ -390,15 +392,15 @@
                 // Check if it is the current plan step
                 // console.log("testCell[i].name = " + testCells[i].name);
                 // console.log("planStep = " + planStep);
-				if(checkCollision(ball,testCells[i]) && (testCells[i].name == planStep.toString()))
+				if(checkCollision(ball,testCells[i]) && (testCells[i].name == testPlanStep.toString()))
 				{
 					addToScore(100);
 					console.log("Brick Hit / New Score: "+score);
 					destroyBrick(testCells[i]);
 					testCells.splice(i,1);
 					i--;
-                    planStep++;
-                    changeBallColor(brickColor);
+                    testPlanStep++;
+                    changeBallColor(brickColor);    // TODO - use the testCell colors
 				}
                 
                 if(testCells.length == 0) 
@@ -414,7 +416,7 @@
             // Change services to tasksCells
 			for(var i=0;i<tasksCells.length;i++)
 			{
-				if(checkCollision(ball,tasksCells[i]))
+				if(checkCollision(ball,tasksCells[i]) && (tasksCells[i].name == taskPlanStep.toString()))
 				{
                     // ToDo - to add some more logic for tasksCells: available or not etc, cost - to be done in spreadsheets
 					deductFromScore(100);
@@ -422,7 +424,8 @@
 					destroyService(tasksCells[i]);
 					tasksCells.splice(i,1);
 					i--;
-                    changeBallColor(serviceColor);
+                    taskPlanStep++;
+                    changeBallColor(serviceColor);  // TODO - use the taskCell colors
 				}
 			}    // End Collision check with Service cells
             
