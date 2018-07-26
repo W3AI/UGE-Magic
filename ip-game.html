@@ -107,6 +107,7 @@
                         '#9999ff'
                         ];
         
+        var testPlanReady = false;      // when testPlanReady is true - we can start execution of plan
         var testPlanStep = 1;
         
         var planed  = [1,2,3,4,5,6,7,8,9,10]
@@ -133,8 +134,8 @@
                         '#99ff99'
                         ];
         
+        var taskPlanDone = false;       // when taskPlanDone is true - we can start next Cycle/Project/Challenge
         var taskPlanStep = 1;
-
         
         // To build the Project Plan
         var nrTests = 10;
@@ -185,12 +186,12 @@
         var problem_rows = 6;
         var problem_cols = 10;
         
-        var tasksCells = [];
+        var taskCells = [];
         var taskOrder = 0;
         var iterationTasks = [];  // array of service/tasks objects to keep data: status, change tags, priority/usage/votes, owner, cost, ref, etc
         
         var serviceColor = "Green"; // ToDo - make it an array to hold diff colors / service type
-        var serviceLine = 550; // y position for the tasksCells
+        var serviceLine = 550; // y position for the taskCells
         var service_rows = 6;
         var service_cols = 10; 
         
@@ -386,7 +387,7 @@
 				ball.x -= ball.xSpeed;
 			}
 
-            // Changed bricks to testCells
+            // Check collision w testCells
 			for(var i=0;i<testCells.length;i++)
 			{
                 // Check if it is the current plan step
@@ -405,28 +406,40 @@
                 
                 if(testCells.length == 0) 
                 {
-                    gameStarted = false;
-                    lives += 50;
-                    init();
+                    // gameStarted = false;
+                    // lives += 50;
+                    // init();
+                    
+                    testPlanReady = true;
                 }
                 
 			}
             
             // Added the collision w service cells
-            // Change services to tasksCells
-			for(var i=0;i<tasksCells.length;i++)
+            // Change services to taskCells
+			for(var i=0;i<taskCells.length;i++)
 			{
-				if(checkCollision(ball,tasksCells[i]) && (tasksCells[i].name == taskPlanStep.toString()))
+				if(checkCollision(ball,taskCells[i]) && (taskCells[i].name == taskPlanStep.toString()) && testPlanReady)
 				{
-                    // ToDo - to add some more logic for tasksCells: available or not etc, cost - to be done in spreadsheets
+                    // ToDo - to add some more logic for taskCells: available or not etc, cost - to be done in spreadsheets
 					deductFromScore(100);
 					console.log("Service Used / New Score: "+score);
-					destroyService(tasksCells[i]);
-					tasksCells.splice(i,1);
+					destroyService(taskCells[i]);
+					taskCells.splice(i,1);
 					i--;
                     taskPlanStep++;
                     changeBallColor(serviceColor);  // TODO - use the taskCell colors
 				}
+                
+                if(taskCells.length == 0) 
+                {   
+                    taskPlanDone = true;
+                    
+                    gameStarted = false;
+                    lives += 50;
+                    init();
+                }
+
 			}    // End Collision check with Service cells
             
 
@@ -661,7 +674,7 @@
                 });
             
 	        stage.addChild(cell);
-	        tasksCells.push(cell);
+	        taskCells.push(cell);
 	    }
 
         // TODO - Rename to destroyTestCell
