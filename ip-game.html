@@ -81,21 +81,52 @@
         
         var brickColor = '#000FFF';
         
-         var tests = [["a","2","3","4","5","6","7","8","9","0"],
-                     ["0","b","2","3","4","5","6","7","8","9"],
-                     ["0","0","c","2","3","4","5","6","7","8"],
-                     ["0","0","0","d","2","3","4","5","6","7"],
-                     ["0","0","0","0","e","2","3","4","5","6"],
-                     ["1","1","1","1","1","1","1","1","1","1"]
-                    ];       
+         var tests = [
+                        ["|","|","|","|","|","|","|","|","|","|"],
+                        ["|","|","|","|","|","|","|","|","|","|"],
+                        ["|","|","|","|","|","|","|","|","|","|"],
+                        ["|","|","|","|","|","|","|","|","|","|"],
+                        ["|","|","|","|","|","|","|","|","|","|"],
+                        [1,2,3,4,5,6,7,8,9,10]
+                    ]; 
         
-        var tasks = [["1","1","1","1","1","1","1","1","1","1"],
-                     ["0","b","2","3","4","5","6","7","8","9"],
-                     ["0","0","c","2","3","4","5","6","7","8"],
-                     ["0","0","0","d","2","3","4","5","6","7"],
-                     ["0","0","0","0","e","2","3","4","5","6"],
-                     ["0","0","0","0","0","0","0","0","0","0"]
+        var testsColor = [
+                        '#0000ff',
+                        '#1111ff',
+                        '#2222ff',
+                        '#3333ff',
+                        '#4444ff',
+                        '#5555ff',
+                        '#6666ff',
+                        '#7777ff',
+                        '#8888ff',
+                        '#9999ff'
+                        ];
+        
+        var plan  = [0,0,0,0,0,0,0,0,0,0]
+        
+        var tasks = [
+                        [1,2,3,4,5,6,7,8,9,10],
+                        ["|","|","|","|","|","|","|","|","|","|"],
+                        ["|","|","|","|","|","|","|","|","|","|"],
+                        ["|","|","|","|","|","|","|","|","|","|"],
+                        ["|","|","|","|","|","|","|","|","|","|"],
+                        ["|","|","|","|","|","|","|","|","|","|"]
                     ];
+        
+        var tasksColor = [
+                        '#00ff00',
+                        '#11ff11',
+                        '#22ff22',
+                        '#33ff33',
+                        '#44ff44',
+                        '#55ff55',
+                        '#66ff66',
+                        '#77ff77',
+                        '#88ff88',
+                        '#99ff99'
+                        ];
+
         
         // To build the Project Plan
         var nrTests = 10;
@@ -497,9 +528,8 @@
 				for(var j = 0;j<problem_rows;j++)
 				{
 					// Adding mapping logic from the tasks matrix - if tasks[i*j] == 1 -> create task brick
-                    if (tests[j][i] == "1") {
-                          createBrick(i*(BRICKS_WIDTH+BETWEEN_COLS)+PADDING_LEFT,j*(BRICKS_HEIGHT+BETWEEN_ROWS)+PADDING_TOP);
-//                        createBrickRotate(i*(BRICKS_WIDTH+BETWEEN_COLS)+PADDING_LEFT,j*(BRICKS_HEIGHT+BETWEEN_ROWS)+PADDING_TOP, i*j);  // angle = i+j
+                    if (tests[j][i] != "|") {
+                          createBrick(i*(BRICKS_WIDTH+BETWEEN_COLS)+PADDING_LEFT,j*(BRICKS_HEIGHT+BETWEEN_ROWS)+PADDING_TOP,tests[j][i]-1);
                         }
                     
 				}
@@ -517,8 +547,8 @@
 			for(var i = 0;i<service_cols;i++)
 				for(var j = 0;j<service_rows;j++)
 				{
-                    if (tasks[j][i] == "1") {
-					   createService(i*(BRICKS_WIDTH+BETWEEN_COLS)+PADDING_LEFT,j*(BRICKS_HEIGHT+BETWEEN_ROWS) + serviceLine); 
+                    if (tasks[j][i] != "|") {
+					   createService(i*(BRICKS_WIDTH+BETWEEN_COLS)+PADDING_LEFT,j*(BRICKS_HEIGHT+BETWEEN_ROWS) + serviceLine,tasks[j][i]-1); 
                     }
 				}
             // Create Services text
@@ -530,10 +560,10 @@
             
 		}
 
-		function createBrick(x,y)
+		function createBrick(x,y,type)
 		{
 			var brick = new createjs.Shape();
-	        brick.graphics.beginFill(brickColor);
+	        brick.graphics.beginFill(testsColor[type]);
 	        brick.graphics.drawRect(0, 0, BRICKS_WIDTH, BRICKS_HEIGHT);
 	        brick.graphics.endFill();
 
@@ -563,10 +593,10 @@
 	        bricks.push(brick);
 	    }
 
-        function createService(x,y)
+        function createService(x,y,type)
 		{
 			var service = new createjs.Shape();
-	        service.graphics.beginFill(serviceColor);
+	        service.graphics.beginFill(tasksColor[type]);
 	        service.graphics.drawRect(0, 0, BRICKS_WIDTH, BRICKS_HEIGHT);
 	        service.graphics.endFill();
 
