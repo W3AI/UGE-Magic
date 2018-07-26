@@ -388,8 +388,8 @@
 			for(var i=0;i<testCells.length;i++)
 			{
                 // Check if it is the current plan step
-                console.log("testCell[i].name = " + testCells[i].name);
-                console.log("planStep = " + planStep);
+                // console.log("testCell[i].name = " + testCells[i].name);
+                // console.log("planStep = " + planStep);
 				if(checkCollision(ball,testCells[i]) && (testCells[i].name == planStep.toString()))
 				{
 					addToScore(100);
@@ -544,10 +544,11 @@
 				{
 					// Adding mapping logic from the tasks matrix - if tasks[i*j] == 1 -> create task brick
                     if (tests[j][i] != "|") {
-                        // for now
+                        // for now - later task type and id, etc will come from project spreadsheet via iterationTests[]
                         // test type = value of tests[j][i]-1
                         // test id = tests[j][i]
-                          createTest(i*(BRICKS_WIDTH+BETWEEN_COLS)+PADDING_LEFT,j*(BRICKS_HEIGHT+BETWEEN_ROWS)+PADDING_TOP,tests[j][i]-1,tests[j][i]);
+                          createTest(i*(BRICKS_WIDTH+BETWEEN_COLS) + PADDING_LEFT,
+                                     j*(BRICKS_HEIGHT+BETWEEN_ROWS) + PADDING_TOP,tests[j][i]-1,tests[j][i]);
                         }
                     
 				}
@@ -567,7 +568,11 @@
 				for(var j = 0;j<service_rows;j++)
 				{
                     if (tasks[j][i] != "|") {
-					   createTask(i*(BRICKS_WIDTH+BETWEEN_COLS)+PADDING_LEFT,j*(BRICKS_HEIGHT+BETWEEN_ROWS) + serviceLine,tasks[j][i]-1); 
+                        // for now - later task type and id, etc will come from service spreadsheet via iterationTasks[]
+                        // task type = value of tasks[j][i]-1
+                        // task id = tasks[j][i]
+					   createTask(i*(BRICKS_WIDTH+BETWEEN_COLS) + PADDING_LEFT,
+                                  j*(BRICKS_HEIGHT+BETWEEN_ROWS) + serviceLine,tasks[j][i]-1,tasks[j][i]); 
                     }
 				}
             // Create Services text
@@ -581,7 +586,7 @@
 
 		function createTest(x,y,type,id)
 		{
-			var test = testOrder;  // TODO test as an object w properties from project sheet: status, priority, etc
+			var test = testOrder;  // TODO test as an object w properties from project sheet: type, status, priority, etc
             testOrder++;
             iterationTests.push(test);
             
@@ -589,7 +594,7 @@
             
             var cell = new createjs.Container();
             
-            // Renamed brick to rect
+            // Create graphical rectangle of the cell
             var rect = new createjs.Shape();
 	        rect.graphics.beginFill(testsColor[type]);
 	        rect.graphics.drawRect(0, 0, BRICKS_WIDTH, BRICKS_HEIGHT); // TODO - Rename BRICKS W, H to Cell W, H
@@ -618,27 +623,42 @@
 	    }
         
 
-        function createTask(x,y,type)
+        function createTask(x,y,type,id)
 		{
-            var task = taskOrder;  // TODO task as an object w properties from service sheet: availability, cost, etc
+            var task = taskOrder;  // TODO task as an object w properties from service sheet: type, availability, cost, etc
             taskOrder++;
-            iterationTasks.push(task);          // 
+            iterationTasks.push(task);           
             
-            // var cell = new createjs.Container();
+            var text = new createjs.Text();
             
-            // TODO - rename service to rect
-			var service = new createjs.Shape();
-	        service.graphics.beginFill(tasksColor[type]);
-	        service.graphics.drawRect(0, 0, BRICKS_WIDTH, BRICKS_HEIGHT);
-	        service.graphics.endFill();
+            var cell = new createjs.Container();
+            
+            // Create graphical rectangle of the cell
+			var rect = new createjs.Shape();
+	        rect.graphics.beginFill(tasksColor[type]);
+	        rect.graphics.drawRect(0, 0, BRICKS_WIDTH, BRICKS_HEIGHT);
+	        rect.graphics.endFill();
+            
+            // Adding/linking a text to the cell's rectangle
+            cell.addChild(rect, text);
 
-	        service.regX = BRICKS_WIDTH/2;
-	        service.regY = BRICKS_HEIGHT/2;
-	        service.x = x;
-	        service.y = y;
-	        service.setBounds(service.regX,service.regY,BRICKS_WIDTH,BRICKS_HEIGHT);
-	        stage.addChild(service);
-	        tasksCells.push(service);
+	        cell.regX = BRICKS_WIDTH/2;
+	        cell.regY = BRICKS_HEIGHT/2;
+	        cell.x = x;
+	        cell.y = y;
+            cell.name = id;
+	        cell.setBounds(cell.regX,cell.regY,BRICKS_WIDTH,BRICKS_HEIGHT);
+            
+            text.set({
+                text: id,
+                textAlign: "center",
+                textBaseline: "middle",
+                x: BRICKS_WIDTH/2,
+                y: BRICKS_HEIGHT/2
+                });
+            
+	        stage.addChild(cell);
+	        tasksCells.push(cell);
 	    }
 
         // TODO - Rename to destroyTestCell
