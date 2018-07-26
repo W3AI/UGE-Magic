@@ -59,8 +59,8 @@
         
         const PADDLE_WIDTH = 100;
 		const PADDLE_HEIGHT = 20;
-		const BRICKS_WIDTH = 60;
-		const BRICKS_HEIGHT = 30;
+		const CELL_WIDTH = 60;
+		const CELL_HEIGHT = 30;
 		const BALL_RADIUS = 8;
 		const FULL_X_SPEED = 7;
 		var stage;
@@ -151,11 +151,11 @@
         var planRad = (2*Math.PI)/nrTests;
         var planCircleX = 315;
         var planCircleY = 344;
-        var planCircleR = 100; // BRICKS_WIDTH/2*Math.sin(testRad);
+        var planCircleR = 100; // CELL_WIDTH/2*Math.sin(testRad);
         // Plan Circle begins at 9 o'clock
         var planX = planCircleX - planCircleR;
         var planY = planCircleY;
-        var circleSize = ( 2 * planCircleR * Math.sin(planRad) ) / BRICKS_WIDTH;
+        var circleSize = ( 2 * planCircleR * Math.sin(planRad) ) / CELL_WIDTH;
         // console.log(circleSize);
         
         // SI: Jul 13, 2018
@@ -401,7 +401,7 @@
 					testCells.splice(i,1);
 					i--;
                     testPlanStep++;
-                    changeBallColor(brickColor);    // TODO - use the testCell colors
+                    changeBallColor(brickColor);    // TODO - use the testCell colors, via testCell Class
 				}
                 
                 if(testCells.length == 0) 
@@ -428,7 +428,7 @@
 					taskCells.splice(i,1);
 					i--;
                     taskPlanStep++;
-                    changeBallColor(serviceColor);  // TODO - use the taskCell colors
+                    changeBallColor(serviceColor);  // TODO - use the taskCell colors, via taskCell Class
 				}
                 
                 if(taskCells.length == 0) 
@@ -563,8 +563,8 @@
                         // for now - later task type and id, etc will come from project spreadsheet via iterationTests[]
                         // test type = value of tests[j][i]-1
                         // test id = tests[j][i]
-                          createTest(i*(BRICKS_WIDTH+BETWEEN_COLS) + PADDING_LEFT,
-                                     j*(BRICKS_HEIGHT+BETWEEN_ROWS) + PADDING_TOP,tests[j][i]-1,tests[j][i]);
+                          createTest(i*(CELL_WIDTH+BETWEEN_COLS) + PADDING_LEFT,
+                                     j*(CELL_HEIGHT+BETWEEN_ROWS) + PADDING_TOP,tests[j][i]-1,tests[j][i]);
                         }
                     
 				}
@@ -587,8 +587,8 @@
                         // for now - later task type and id, etc will come from service spreadsheet via iterationTasks[]
                         // task type = value of tasks[j][i]-1
                         // task id = tasks[j][i]
-					   createTask(i*(BRICKS_WIDTH+BETWEEN_COLS) + PADDING_LEFT,
-                                  j*(BRICKS_HEIGHT+BETWEEN_ROWS) + serviceLine,tasks[j][i]-1,tasks[j][i]); 
+					   createTask(i*(CELL_WIDTH+BETWEEN_COLS) + PADDING_LEFT,
+                                  j*(CELL_HEIGHT+BETWEEN_ROWS) + serviceLine,tasks[j][i]-1,tasks[j][i]); 
                     }
 				}
             // Create Services text
@@ -613,25 +613,25 @@
             // Create graphical rectangle of the cell
             var rect = new createjs.Shape();
 	        rect.graphics.beginFill(testsColor[type]);
-	        rect.graphics.drawRect(0, 0, BRICKS_WIDTH, BRICKS_HEIGHT); // TODO - Rename BRICKS W, H to Cell W, H
+	        rect.graphics.drawRect(0, 0, CELL_WIDTH, CELL_HEIGHT); 
 	        rect.graphics.endFill();
 
             // Adding/linking a text to the cell's rectangle
             cell.addChild(rect, text);
             
-	        cell.regX = BRICKS_WIDTH/2;
-	        cell.regY = BRICKS_HEIGHT/2;
+	        cell.regX = CELL_WIDTH/2;
+	        cell.regY = CELL_HEIGHT/2;
 	        cell.x = x;
 	        cell.y = y;
             cell.name = id;
-	        cell.setBounds(cell.regX,cell.regY,BRICKS_WIDTH,BRICKS_HEIGHT);
+	        cell.setBounds(cell.regX,cell.regY,CELL_WIDTH,CELL_HEIGHT);
             
             text.set({
                 text: id,
                 textAlign: "center",
                 textBaseline: "middle",
-                x: BRICKS_WIDTH/2,
-                y: BRICKS_HEIGHT/2
+                x: CELL_WIDTH/2,
+                y: CELL_HEIGHT/2
                 });
                 
 	        stage.addChild(cell);
@@ -652,25 +652,25 @@
             // Create graphical rectangle of the cell
 			var rect = new createjs.Shape();
 	        rect.graphics.beginFill(tasksColor[type]);
-	        rect.graphics.drawRect(0, 0, BRICKS_WIDTH, BRICKS_HEIGHT);
+	        rect.graphics.drawRect(0, 0, CELL_WIDTH, CELL_HEIGHT);
 	        rect.graphics.endFill();
             
             // Adding/linking a text to the cell's rectangle
             cell.addChild(rect, text);
 
-	        cell.regX = BRICKS_WIDTH/2;
-	        cell.regY = BRICKS_HEIGHT/2;
+	        cell.regX = CELL_WIDTH/2;
+	        cell.regY = CELL_HEIGHT/2;
 	        cell.x = x;
 	        cell.y = y;
             cell.name = id;
-	        cell.setBounds(cell.regX,cell.regY,BRICKS_WIDTH,BRICKS_HEIGHT);
+	        cell.setBounds(cell.regX,cell.regY,CELL_WIDTH,CELL_HEIGHT);
             
             text.set({
                 text: id,
                 textAlign: "center",
                 textBaseline: "middle",
-                x: BRICKS_WIDTH/2,
-                y: BRICKS_HEIGHT/2
+                x: CELL_WIDTH/2,
+                y: CELL_HEIGHT/2
                 });
             
 	        stage.addChild(cell);
