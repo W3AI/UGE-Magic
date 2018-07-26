@@ -103,7 +103,9 @@
                         '#9999ff'
                         ];
         
-        var plan  = [0,0,0,0,0,0,0,0,0,0]
+        var plan = 0;
+        
+        var planed  = [1,2,3,4,5,6,7,8,9,10]
         
         var tasks = [
                         [1,2,3,4,5,6,7,8,9,10],
@@ -375,15 +377,18 @@
 				ball.x -= ball.xSpeed;
 			}
 
+            // TODO = Change bricks to testCells
 			for(var i=0;i<bricks.length;i++)
 			{
-				if(checkCollision(ball,bricks[i]))
+                // TODO - Fix / create testCellsStatus array !!!
+				if(checkCollision(ball,bricks[i]) && (i==plan))
 				{
 					addToScore(100);
 					console.log("Brick Hit / New Score: "+score);
 					destroyBrick(bricks[i]);
 					bricks.splice(i,1);
 					i--;
+                    plan++;
                     changeBallColor(brickColor);
 				}
                 
@@ -397,6 +402,7 @@
 			}
             
             // SI: Jul 13, 2018 adding the collision w service bricks
+            // TODO - Change services to tasksCells
 			for(var i=0;i<services.length;i++)
 			{
 				if(checkCollision(ball,services[i]))
