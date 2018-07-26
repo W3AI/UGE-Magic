@@ -69,6 +69,7 @@
         var newball;    // used to change the color after collision
         
 		var testCells = [];
+        var testOrder = 0;
         var iterationTests = [];    // array of requirments/tests objects to keep data: status, change tags, priority/votes/usage, owner, cost, ref, etc
         
 		var score = 0;
@@ -183,6 +184,7 @@
         var problem_cols = 10;
         
         var tasksCells = [];
+        var taskOrder = 0;
         var iterationTasks = [];  // array of service/tasks objects to keep data: status, change tags, priority/usage/votes, owner, cost, ref, etc
         
         var serviceColor = "Green"; // ToDo - make it an array to hold diff colors / service type
@@ -386,7 +388,7 @@
 			for(var i=0;i<testCells.length;i++)
 			{
                 // Create testCellsStatus array + changed plan to planStep
-				if(checkCollision(ball,testCells[i]) && (i==planStep))
+				if(checkCollision(ball,testCells[i]))
 				{
 					addToScore(100);
 					console.log("Brick Hit / New Score: "+score);
@@ -574,23 +576,51 @@
 
 		function createTest(x,y,type)
 		{
-			var brick = new createjs.Shape();
-	        brick.graphics.beginFill(testsColor[type]);
-	        brick.graphics.drawRect(0, 0, BRICKS_WIDTH, BRICKS_HEIGHT);
-	        brick.graphics.endFill();
+			var test = testOrder;  // TODO test as an object w properties from project sheet: status, priority, etc
+            testOrder++;
+            iterationTests.push(test);
+            
+            var text = new createjs.Text();
+            
+            var cell = new createjs.Container();
+            
+            // Renamed brick to dreptunghi
+            var dreptunghi = new createjs.Shape();
+	        dreptunghi.graphics.beginFill(testsColor[type]);
+	        dreptunghi.graphics.drawRect(0, 0, BRICKS_WIDTH, BRICKS_HEIGHT); // TODO - Rename BRICKS W, H to C
+	        dreptunghi.graphics.endFill();
 
-	        brick.regX = BRICKS_WIDTH/2;
-	        brick.regY = BRICKS_HEIGHT/2;
-	        brick.x = x;
-	        brick.y = y;
-	        brick.setBounds(brick.regX,brick.regY,BRICKS_WIDTH,BRICKS_HEIGHT);
-	        stage.addChild(brick);
-	        testCells.push(brick);
+            // Adding/linking a text to the cell's rectangle
+            cell.addChild(dreptunghi, text);
+            
+	        cell.regX = BRICKS_WIDTH/2;
+	        cell.regY = BRICKS_HEIGHT/2;
+	        cell.x = x;
+	        cell.y = y;
+	        cell.setBounds(cell.regX,cell.regY,BRICKS_WIDTH,BRICKS_HEIGHT);
+            
+            text.set({
+                text: "testId",
+                textAlign: "center",
+                textBaseline: "middle",
+                x: BRICKS_WIDTH/2,
+                y: BRICKS_HEIGHT/2
+                });
+                
+	        stage.addChild(cell);
+	        testCells.push(cell);
 	    }
         
 
         function createTask(x,y,type)
 		{
+            var task = taskOrder;  // TODO task as an object w properties from service sheet: availability, cost, etc
+            taskOrder++;
+            iterationTasks.push(task);          // 
+            
+            // var cell = new createjs.Container();
+            
+            // TODO - rename service to rect
 			var service = new createjs.Shape();
 	        service.graphics.beginFill(tasksColor[type]);
 	        service.graphics.drawRect(0, 0, BRICKS_WIDTH, BRICKS_HEIGHT);
@@ -605,7 +635,7 @@
 	        tasksCells.push(service);
 	    }
 
-        
+        // TODO - Rename to destroyTestCell
 		function destroyBrick(brick)
 		{
 			// createjs.Tween.get(brick,{}).to({scaleX:0,scaleY:0}, 500)
@@ -621,6 +651,7 @@
 			// setTimeout(removeBrickFromScreen,30000,brick);  // TODO - to force quick execution of plan while in attention span - 30000 = 30seconds ~ attention span
 		}
 
+        // TODO - Rename to destroyTaskCell
 		function destroyService(brick)
 		{
 			// createjs.Tween.get(brick,{}).to({scaleX:0,scaleY:0}, 500)
