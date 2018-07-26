@@ -69,7 +69,7 @@
         var newball;    // used to change the color after collision
         
 		var testCells = [];
-        var testCellsStatus = [];
+        var iterationTests = [];    // array of requirments/tests objects to keep data: status, change tags, priority/votes/usage, owner, cost, ref, etc
         
 		var score = 0;
 		var lives = 50;
@@ -183,6 +183,8 @@
         var problem_cols = 10;
         
         var tasksCells = [];
+        var iterationTasks = [];  // array of service/tasks objects to keep data: status, change tags, priority/usage/votes, owner, cost, ref, etc
+        
         var serviceColor = "Green"; // ToDo - make it an array to hold diff colors / service type
         var serviceLine = 550; // y position for the tasksCells
         var service_rows = 6;
@@ -206,8 +208,8 @@
             createBackground();
 			createPaddle();
 			createBall();
-			createBrickGrid(); // Create Problems grid
-			createServiceGrid(); // Create Services grid            
+			createTestGrid(); // Create Problems/Tests grid
+			createTaskGrid(); // Create Services/Tasks grid            
 			createScoreText();
 
 			stage.canvas.height = window.innerHeight;
@@ -530,15 +532,15 @@
 			}
 		}
 
-		// SI: Jul 13, 2018 -----------------------------------------------------
-		function createBrickGrid()
+		// Renamed to createTestGrid and added iterationTests array 
+		function createTestGrid()
 		{
 			for(var i = 0;i<problem_cols;i++)
 				for(var j = 0;j<problem_rows;j++)
 				{
 					// Adding mapping logic from the tasks matrix - if tasks[i*j] == 1 -> create task brick
                     if (tests[j][i] != "|") {
-                          createBrick(i*(BRICKS_WIDTH+BETWEEN_COLS)+PADDING_LEFT,j*(BRICKS_HEIGHT+BETWEEN_ROWS)+PADDING_TOP,tests[j][i]-1);
+                          createTest(i*(BRICKS_WIDTH+BETWEEN_COLS)+PADDING_LEFT,j*(BRICKS_HEIGHT+BETWEEN_ROWS)+PADDING_TOP,tests[j][i]-1);
                         }
                     
 				}
@@ -551,13 +553,14 @@
             stage.addChild(textChallenges);
 		}		
         
-        function createServiceGrid()
+        // Renamed to createTaskGrid and added iterationTasks array
+        function createTaskGrid()
 		{
 			for(var i = 0;i<service_cols;i++)
 				for(var j = 0;j<service_rows;j++)
 				{
                     if (tasks[j][i] != "|") {
-					   createService(i*(BRICKS_WIDTH+BETWEEN_COLS)+PADDING_LEFT,j*(BRICKS_HEIGHT+BETWEEN_ROWS) + serviceLine,tasks[j][i]-1); 
+					   createTask(i*(BRICKS_WIDTH+BETWEEN_COLS)+PADDING_LEFT,j*(BRICKS_HEIGHT+BETWEEN_ROWS) + serviceLine,tasks[j][i]-1); 
                     }
 				}
             // Create Services text
@@ -569,7 +572,7 @@
             
 		}
 
-		function createBrick(x,y,type)
+		function createTest(x,y,type)
 		{
 			var brick = new createjs.Shape();
 	        brick.graphics.beginFill(testsColor[type]);
@@ -586,7 +589,7 @@
 	    }
         
 
-        function createService(x,y,type)
+        function createTask(x,y,type)
 		{
 			var service = new createjs.Shape();
 	        service.graphics.beginFill(tasksColor[type]);
