@@ -107,7 +107,7 @@
                         '#9999ff'
                         ];
         
-        var planStep = 0;
+        var planStep = 1;
         
         var planed  = [1,2,3,4,5,6,7,8,9,10]
         
@@ -153,7 +153,7 @@
         var planX = planCircleX - planCircleR;
         var planY = planCircleY;
         var circleSize = ( 2 * planCircleR * Math.sin(planRad) ) / BRICKS_WIDTH;
-        console.log(circleSize);
+        // console.log(circleSize);
         
         // SI: Jul 13, 2018
         // ToDo - Add Second text like: Match World's Top Challenges with World's Top Services
@@ -387,8 +387,10 @@
             // Changed bricks to testCells
 			for(var i=0;i<testCells.length;i++)
 			{
-                // Create testCellsStatus array + changed plan to planStep
-				if(checkCollision(ball,testCells[i]))
+                // Check if it is the current plan step
+                console.log("testCell[i].name = " + testCells[i].name);
+                console.log("planStep = " + planStep);
+				if(checkCollision(ball,testCells[i]) && (testCells[i].name == planStep.toString()))
 				{
 					addToScore(100);
 					console.log("Brick Hit / New Score: "+score);
@@ -600,6 +602,7 @@
 	        cell.regY = BRICKS_HEIGHT/2;
 	        cell.x = x;
 	        cell.y = y;
+            cell.name = id;
 	        cell.setBounds(cell.regX,cell.regY,BRICKS_WIDTH,BRICKS_HEIGHT);
             
             text.set({
