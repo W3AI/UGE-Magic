@@ -67,7 +67,10 @@
 		var paddle;
 		var ball;
         var newball;    // used to change the color after collision
-		var bricks = [];
+        
+		var testCells = [];
+        var testCellsStatus = [];
+        
 		var score = 0;
 		var lives = 50;
 		var scoreText;
@@ -103,7 +106,7 @@
                         '#9999ff'
                         ];
         
-        var plan = 0;
+        var planStep = 0;
         
         var planed  = [1,2,3,4,5,6,7,8,9,10]
         
@@ -179,9 +182,9 @@
         var problem_rows = 6;
         var problem_cols = 10;
         
-        var services = [];
+        var tasksCells = [];
         var serviceColor = "Green"; // ToDo - make it an array to hold diff colors / service type
-        var serviceLine = 550; // y position for the services
+        var serviceLine = 550; // y position for the tasksCells
         var service_rows = 6;
         var service_cols = 10; 
         
@@ -377,22 +380,22 @@
 				ball.x -= ball.xSpeed;
 			}
 
-            // TODO = Change bricks to testCells
-			for(var i=0;i<bricks.length;i++)
+            // Changed bricks to testCells
+			for(var i=0;i<testCells.length;i++)
 			{
-                // TODO - Fix / create testCellsStatus array !!!
-				if(checkCollision(ball,bricks[i]) && (i==plan))
+                // Create testCellsStatus array + changed plan to planStep
+				if(checkCollision(ball,testCells[i]) && (i==planStep))
 				{
 					addToScore(100);
 					console.log("Brick Hit / New Score: "+score);
-					destroyBrick(bricks[i]);
-					bricks.splice(i,1);
+					destroyBrick(testCells[i]);
+					testCells.splice(i,1);
 					i--;
-                    plan++;
+                    planStep++;
                     changeBallColor(brickColor);
 				}
                 
-                if(bricks.length == 0) 
+                if(testCells.length == 0) 
                 {
                     gameStarted = false;
                     lives += 50;
@@ -401,21 +404,21 @@
                 
 			}
             
-            // SI: Jul 13, 2018 adding the collision w service bricks
-            // TODO - Change services to tasksCells
-			for(var i=0;i<services.length;i++)
+            // Added the collision w service cells
+            // Change services to tasksCells
+			for(var i=0;i<tasksCells.length;i++)
 			{
-				if(checkCollision(ball,services[i]))
+				if(checkCollision(ball,tasksCells[i]))
 				{
-                    // ToDo - to add some more logic for services: available or not etc, cost
+                    // ToDo - to add some more logic for tasksCells: available or not etc, cost - to be done in spreadsheets
 					deductFromScore(100);
 					console.log("Service Used / New Score: "+score);
-					destroyService(services[i]);
-					services.splice(i,1);
+					destroyService(tasksCells[i]);
+					tasksCells.splice(i,1);
 					i--;
                     changeBallColor(serviceColor);
 				}
-			}    // End Collision check with Service bricks
+			}    // End Collision check with Service cells
             
 
 			if(checkCollision(ball,paddle))
@@ -579,25 +582,9 @@
 	        brick.y = y;
 	        brick.setBounds(brick.regX,brick.regY,BRICKS_WIDTH,BRICKS_HEIGHT);
 	        stage.addChild(brick);
-	        bricks.push(brick);
+	        testCells.push(brick);
 	    }
         
-        function createBrickRotate(x,y,angle)
-		{
-			var brick = new createjs.Shape();
-	        brick.graphics.beginFill(brickColor);
-	        brick.graphics.drawRect(0, 0, BRICKS_WIDTH, BRICKS_HEIGHT);
-	        brick.graphics.endFill();
-
-	        brick.regX = BRICKS_WIDTH/2;
-	        brick.regY = BRICKS_HEIGHT/2;
-	        brick.x = x;
-	        brick.y = y;
-	        brick.setBounds(brick.regX,brick.regY,BRICKS_WIDTH,BRICKS_HEIGHT);
-            brick.rotation = angle;
-	        stage.addChild(brick);
-	        bricks.push(brick);
-	    }
 
         function createService(x,y,type)
 		{
@@ -612,7 +599,7 @@
 	        service.y = y;
 	        service.setBounds(service.regX,service.regY,BRICKS_WIDTH,BRICKS_HEIGHT);
 	        stage.addChild(service);
-	        services.push(service);
+	        tasksCells.push(service);
 	    }
 
         
