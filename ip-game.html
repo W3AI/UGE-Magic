@@ -542,7 +542,10 @@
 				{
 					// Adding mapping logic from the tasks matrix - if tasks[i*j] == 1 -> create task brick
                     if (tests[j][i] != "|") {
-                          createTest(i*(BRICKS_WIDTH+BETWEEN_COLS)+PADDING_LEFT,j*(BRICKS_HEIGHT+BETWEEN_ROWS)+PADDING_TOP,tests[j][i]-1);
+                        // for now
+                        // test type = value of tests[j][i]-1
+                        // test id = tests[j][i]
+                          createTest(i*(BRICKS_WIDTH+BETWEEN_COLS)+PADDING_LEFT,j*(BRICKS_HEIGHT+BETWEEN_ROWS)+PADDING_TOP,tests[j][i]-1,tests[j][i]);
                         }
                     
 				}
@@ -574,7 +577,7 @@
             
 		}
 
-		function createTest(x,y,type)
+		function createTest(x,y,type,id)
 		{
 			var test = testOrder;  // TODO test as an object w properties from project sheet: status, priority, etc
             testOrder++;
@@ -584,14 +587,14 @@
             
             var cell = new createjs.Container();
             
-            // Renamed brick to dreptunghi
-            var dreptunghi = new createjs.Shape();
-	        dreptunghi.graphics.beginFill(testsColor[type]);
-	        dreptunghi.graphics.drawRect(0, 0, BRICKS_WIDTH, BRICKS_HEIGHT); // TODO - Rename BRICKS W, H to C
-	        dreptunghi.graphics.endFill();
+            // Renamed brick to rect
+            var rect = new createjs.Shape();
+	        rect.graphics.beginFill(testsColor[type]);
+	        rect.graphics.drawRect(0, 0, BRICKS_WIDTH, BRICKS_HEIGHT); // TODO - Rename BRICKS W, H to Cell W, H
+	        rect.graphics.endFill();
 
             // Adding/linking a text to the cell's rectangle
-            cell.addChild(dreptunghi, text);
+            cell.addChild(rect, text);
             
 	        cell.regX = BRICKS_WIDTH/2;
 	        cell.regY = BRICKS_HEIGHT/2;
@@ -600,7 +603,7 @@
 	        cell.setBounds(cell.regX,cell.regY,BRICKS_WIDTH,BRICKS_HEIGHT);
             
             text.set({
-                text: "testId",
+                text: id,
                 textAlign: "center",
                 textBaseline: "middle",
                 x: BRICKS_WIDTH/2,
