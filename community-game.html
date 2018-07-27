@@ -15,14 +15,14 @@
     position: absolute;
     }
 </style>
-	<title>UGE Cycles</title>
+	<title>UGE Circles</title>
 	<script src="https://code.createjs.com/createjs-2015.05.21.min.js"></script>
 </head>
 <body onload="init();">
     
     <div id="gameWrapper">
         <!-- <img id="bg" src="img/bg.jpg"> -->
-        <canvas id="canvas" width="630" height="500" style="border:1px solid #d3d3d3;"></canvas>
+        <canvas id="canvas" width="550" height="500" style="border:1px solid #d3d3d3;"></canvas>
     </div>
 	<script>
         
@@ -44,14 +44,14 @@
         
 		const PADDING_TOP = 20;
         const PADDING_BOTTOM = 20;
-        const PADDING_LEFT = 40;
+        const PADDING_LEFT = 27;
         const BETWEEN_COLS = 1;
         const BETWEEN_ROWS = 1;
         
         const PADDLE_WIDTH = 100;
 		const PADDLE_HEIGHT = 20;
-		const CELL_WIDTH = 60;
-		const CELL_HEIGHT = 30;
+		const CELL_WIDTH = 54;
+		const CELL_HEIGHT = 25;
 		const BALL_RADIUS = 8;
 		const FULL_X_SPEED = 7;
 		var stage;
@@ -140,7 +140,7 @@
         // Changed test circle variables to plan circle vars
         var planAngle = 360/nrTests;
         var planRad = (2*Math.PI)/nrTests;
-        var planCircleX = 315;
+        var planCircleX = 275;
         var planCircleY = 344;
         var planCircleR = 100; // CELL_WIDTH/2*Math.sin(testRad);
         // Plan Circle begins at 9 o'clock
@@ -155,26 +155,26 @@
         var repoText = "UGE-Community.W3AI.net";            // UGE-community.firebaseapp.com
         var repoURL = "https://github.com/W3AI/UGE-Magic";
         var repoTextStyle = "16px Arial";
-        var repoTextX = 430;
+        var repoTextX = 350;
         var repoTextY = 514;
-        var challangeText = "tests";
-        var cTextX = 250;
+        var challangeText = "challenges";
+        var cTextX = 135;
         var cTextY = 103;
-        var serviceText   = "tasks";
-        var sTextX = 250;
+        var serviceText   = "services";
+        var sTextX = 170;
         var sTextY = 634;
         
         var bgTXT = "UGE";
         var bgX = -10;
-        var bgY = 442;
+        var bgY = 433;
         var bgColor = "white";
-        var bgStyle = "295px Arial";
+        var bgStyle = "260px Arial";
         
         var csTextColor = "#ccc";     // "whitesmoke"; 
-        var backgroundText = "plan";
+        var backgroundText = "ideas";
         var backgroundTextColor = "#ccc";
         var backgroundTextStyle = "60px Arial";
-        var bgTextX = 260;
+        var bgTextX = 200;
         var bgTextY = 360;
         
         var scoreTextX = 10;
