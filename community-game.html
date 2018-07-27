@@ -42,7 +42,7 @@
         // -->> UGE Magic <<--
         // Forked from Daniel Albu's - Advanced HTML5 Game Development / Lynda / Packt Publishing
         
-		const PADDING_TOP = 20;
+		const PADDING_TOP = 13;
         const PADDING_BOTTOM = 20;
         const PADDING_LEFT = 27;
         const BETWEEN_COLS = 1;
@@ -77,11 +77,11 @@
         var projectColor = '#000FFF';
         
          var tests = [
-                        ["|","|","|","|","|","|","|","|","|","|"],
-                        ["|","|","|","|","|","|","|","|","|","|"],
-                        ["|","|","|","|","|","|","|","|","|","|"],
-                        ["|","|","|","|","|","|","|","|","|","|"],
-                        ["|","|","|","|","|","|","|","|","|","|"],
+                        ["","","","","","","","","",""],
+                        ["","","","","","","","","",""],
+                        ["","","","","","","","","",""],
+                        ["","","","","","","","","",""],
+                        ["","","","","","","","","",""],
                         [1,2,3,4,5,6,7,8,9,10]
                     ]; 
         
@@ -105,11 +105,11 @@
         
         var tasks = [
                         [1,2,3,4,5,6,7,8,9,10],
-                        ["|","|","|","|","|","|","|","|","|","|"],
-                        ["|","|","|","|","|","|","|","|","|","|"],
-                        ["|","|","|","|","|","|","|","|","|","|"],
-                        ["|","|","|","|","|","|","|","|","|","|"],
-                        ["|","|","|","|","|","|","|","|","|","|"]
+                        ["","","","","","","","","",""],
+                        ["","","","","","","","","",""],
+                        ["","","","","","","","","",""],
+                        ["","","","","","","","","",""],
+                        ["","","","","","","","","",""]
                     ];
         
         var tasksColor = [
@@ -170,11 +170,11 @@
         var bgColor = "white";
         var bgStyle = "260px Arial";
         
-        var csTextColor = "#ccc";     // "whitesmoke"; 
+        var csTextColor = "whitesmoke";     // "whitesmoke"; 
         var backgroundText = "ideas";
         var backgroundTextColor = "#ccc";
         var backgroundTextStyle = "60px Arial";
-        var bgTextX = 200;
+        var bgTextX = 205;
         var bgTextY = 360;
         
         var scoreTextX = 10;
@@ -600,7 +600,7 @@
                     }
 				}
             // Create Services text
-            var textServices = new createjs.Text(serviceText, backgroundTextStyle, backgroundTextColor);
+            var textServices = new createjs.Text(serviceText, backgroundTextStyle, csTextColor);
             textServices.x = sTextX;
             textServices.y = sTextY;
             textServices.textBaseline = "alphabetic";
@@ -620,7 +620,11 @@
             
             // Create graphical rectangle of the cell
             var rect = new createjs.Shape();
-	        rect.graphics.beginFill(testsColor[type]);
+            if((type >= 0) && (type<=9)) {
+                rect.graphics.beginFill(testsColor[type]);
+            } else {
+                rect.graphics.beginFill(testsColor[0]);
+            }
 	        rect.graphics.drawRect(0, 0, CELL_WIDTH, CELL_HEIGHT); 
 	        rect.graphics.endFill();
 
@@ -636,6 +640,7 @@
             
             text.set({
                 text: id,
+                color: "white",
                 textAlign: "center",
                 textBaseline: "middle",
                 x: CELL_WIDTH/2,
@@ -659,7 +664,11 @@
             
             // Create graphical rectangle of the cell
 			var rect = new createjs.Shape();
-	        rect.graphics.beginFill(tasksColor[type]);
+	        if((type >= 0) && (type<=9)) {
+                rect.graphics.beginFill(tasksColor[type]);
+            } else {
+                rect.graphics.beginFill(tasksColor[0]);
+            }
 	        rect.graphics.drawRect(0, 0, CELL_WIDTH, CELL_HEIGHT);
 	        rect.graphics.endFill();
             
