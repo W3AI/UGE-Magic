@@ -83,7 +83,7 @@
    		var keyboardMoveRight = false;
    		var highScore = 0;
         
-        var brickColor = '#000FFF';
+        var projectColor = '#000FFF';
         
          var tests = [
                         ["|","|","|","|","|","|","|","|","|","|"],
@@ -396,12 +396,12 @@
 				if(checkCollision(ball,testCells[i]) && (testCells[i].name == testPlanStep.toString()))
 				{
 					addToScore(100);
-					console.log("Brick Hit / New Score: "+score);
-					destroyBrick(testCells[i]);
+					console.log("Cell Hit / New Score: "+score);
+					destroyTestCell(testCells[i]);
 					testCells.splice(i,1);
 					i--;
                     testPlanStep++;
-                    changeBallColor(brickColor);    // TODO - use the testCell colors, via testCell Class
+                    changeBallColor(projectColor);    // TODO - use the testCell colors, via testCell Class
 				}
                 
                 if(testCells.length == 0) 
@@ -424,7 +424,7 @@
                     // ToDo - to add some more logic for taskCells: available or not etc, cost - to be done in spreadsheets
 					deductFromScore(100);
 					console.log("Service Used / New Score: "+score);
-					destroyService(taskCells[i]);
+					destroyTaskCell(taskCells[i]);
 					taskCells.splice(i,1);
 					i--;
                     taskPlanStep++;
@@ -558,7 +558,7 @@
 			for(var i = 0;i<problem_cols;i++)
 				for(var j = 0;j<problem_rows;j++)
 				{
-					// Adding mapping logic from the tasks matrix - if tasks[i*j] == 1 -> create task brick
+					// Adding mapping logic from the tasks matrix - if tasks[i*j] == 1 -> create task cell
                     if (tests[j][i] != "|") {
                         // for now - later task type and id, etc will come from project spreadsheet via iterationTests[]
                         // test type = value of tests[j][i]-1
@@ -677,42 +677,40 @@
 	        taskCells.push(cell);
 	    }
 
-        // TODO - Rename to destroyTestCell
-		function destroyBrick(brick)
+		function destroyTestCell(cell)
 		{
-			// createjs.Tween.get(brick,{}).to({scaleX:0,scaleY:0}, 500)
-            // createjs.Tween.get(brick,{}).to({scaleX:0.5,scaleY:0.5}, 500)
-            // createjs.Tween.get(brick,{}).to({scaleX:0.1,scaleY:0.1,rotation:90}, 500)
-            createjs.Tween.get(brick,{})
+			// createjs.Tween.get(cell,{}).to({scaleX:0,scaleY:0}, 500)
+            // createjs.Tween.get(cell,{}).to({scaleX:0.5,scaleY:0.5}, 500)
+            // createjs.Tween.get(cell,{}).to({scaleX:0.1,scaleY:0.1,rotation:90}, 500)
+            createjs.Tween.get(cell,{})
                 .to({scaleX:scaleTest,scaleY:scaleTest,rotation:(90 + test*planAngle),x:planX,y:planY}, 500);
             test++;
             // Prep values for next test
             planX = planCircleX - planCircleR*Math.cos(test*planRad);
             planY = planCircleY - planCircleR*Math.sin(test*planRad);
 
-			// setTimeout(removeBrickFromScreen,30000,brick);  // TODO - to force quick execution of plan while in attention span - 30000 = 30seconds ~ attention span
+			// setTimeout(removeCellFromScreen,30000,cell);  // TODO - to force quick execution of plan while in attention span - 30000 = 30seconds ~ attention span
 		}
 
-        // TODO - Rename to destroyTaskCell
-		function destroyService(brick)
+		function destroyTaskCell(cell)
 		{
-			// createjs.Tween.get(brick,{}).to({scaleX:0,scaleY:0}, 500)
-            // createjs.Tween.get(brick,{}).to({scaleX:0.5,scaleY:0.5}, 500)
-            // createjs.Tween.get(brick,{}).to({scaleX:0.1,scaleY:0.1,rotation:90}, 500)
-            createjs.Tween.get(brick,{})
+			// createjs.Tween.get(cell,{}).to({scaleX:0,scaleY:0}, 500)
+            // createjs.Tween.get(cell,{}).to({scaleX:0.5,scaleY:0.5}, 500)
+            // createjs.Tween.get(cell,{}).to({scaleX:0.1,scaleY:0.1,rotation:90}, 500)
+            createjs.Tween.get(cell,{})
                 .to({scaleX:scaleTask,scaleY:scaleTask,rotation:(90 + test*planAngle),x:planX,y:planY}, 500);
             test++;
             // Prep values for next test
             planX = planCircleX - planCircleR*Math.cos(test*planRad);
             planY = planCircleY - planCircleR*Math.sin(test*planRad);
 
-			// setTimeout(removeBrickFromScreen,30000,brick);  // TODO - to force quick execution of plan while in attention span - 30000 = 30seconds ~ attention span
+			// setTimeout(removeCellFromScreen,30000,cell);  // TODO - to force quick execution of plan while in attention span - 30000 = 30seconds ~ attention span
 		}
 
         
-		function removeBrickFromScreen(brick)
+		function removeCellFromScreen(cell)
 		{
-			stage.removeChild(brick)
+			stage.removeChild(cell)
 		}
 
 		function createBall()
