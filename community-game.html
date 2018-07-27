@@ -19,14 +19,13 @@
 	<script src="https://code.createjs.com/createjs-2015.05.21.min.js"></script>
 </head>
 <body onload="init();">
-    
     <div id="gameWrapper">
         <!-- <img id="bg" src="img/bg.jpg"> -->
         <canvas id="canvas" width="550" height="500" style="border:1px solid #d3d3d3;"></canvas>
     </div>
 	<script>
         
-        // -->> UGE Community Circles <<--
+        // -- (( UGE Community Circles )) --
         // Stefan Ianta - July 2018 - MIT License and/or whatever Facebook, TechCrunch, Microsoft 
         // and others needs for the Hackathons:
         // 2018 Global/Continental Community Challenge Hackathon / DevPost.com
@@ -39,7 +38,7 @@
         // All welcome to join, test, dev, advice or 
         // Vote to find out World's Top voted Challenges that need a UGE Community Solution
         // Share project/game link with your friends on Facebook, Twitter, LinkedIn, Twitch, etc
-        // -->> UGE Magic <<--
+        // -- (( UGE Community Circles )) --
         // Forked from Daniel Albu's - Advanced HTML5 Game Development / Lynda / Packt Publishing
         
 		const PADDING_TOP = 13;
@@ -54,6 +53,8 @@
 		const CELL_HEIGHT = 25;
 		const BALL_RADIUS = 8;
 		const FULL_X_SPEED = 7;
+        
+        var canvas;
 		var stage;
 		var paddle;
 		var ball;
@@ -207,9 +208,23 @@
 			} else {
 			    highScore = 0;
 			}
+            
+            canvas = document.getElementById('canvas');
 
 			stage = new createjs.Stage("canvas");
-			createjs.Touch.enable(stage);
+			
+            if (typeof window.orientation !== 'undefined') {
+                window.onorientationchange = onOrientationChange;
+                if (createjs.Touch.isSupported()) {
+                    createjs.Touch.enable(stage);
+                }
+            onOrientationChange();
+            }
+            else {
+            window.onresize = resizeGame;
+            resizeGame();
+            }
+            
             createBackground();
 			createPaddle();
 			createBall();
@@ -236,6 +251,39 @@
    			window.onkeyup = keyUpHandler;
    			window.onkeydown = keyDownHandler;
 		}
+        
+    function onOrientationChange() {
+        setTimeout(resizeGame, 100);
+        }
+        
+    function resizeGame() {
+        var nTop, nLeft, scale;
+        var gameWrapper = document.getElementById('gameWrapper');
+        // var bg = document.getElementById('bg');
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        var nWidth = window.innerWidth;
+        var nHeight = window.innerHeight;
+        var widthToHeight = canvas.width / canvas.height;
+        var nWidthToHeight = nWidth / nHeight;
+        if (nWidthToHeight > widthToHeight) {
+            nWidth = nHeight * widthToHeight;
+            scale = nWidth / canvas.width;
+            nLeft = (w / 2) - (nWidth / 2);
+            gameWrapper.style.left = (nLeft) + "px";
+            gameWrapper.style.top = "0px";
+        }
+        else {
+            nHeight = nWidth / widthToHeight;
+            scale = nHeight / canvas.height;
+            nTop = (h / 2) - (nHeight / 2);
+            gameWrapper.style.top = (nTop) + "px";
+            gameWrapper.style.left = "0px";
+        }
+        canvas.setAttribute("style", "-webkit-transform:scale(" + scale + ")");
+        // bg.setAttribute("style", "-webkit-transform:scale(" + scale + ")");
+        window.scrollTo(0, 0);
+    }
         
         function createBackground() {
             
