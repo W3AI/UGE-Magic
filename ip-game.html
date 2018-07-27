@@ -162,7 +162,7 @@
         var repoText = "UGE-community.W3AI.net";            // UGE-community.firebaseapp.com
         var repoURL = "https://github.com/W3AI/UGE-Magic";
         var repoTextStyle = "16px Arial";
-        var repoTextX = 408;
+        var repoTextX = 430;
         var repoTextY = 514;
         var challangeText = "tests";
         var cTextX = 250;
@@ -170,12 +170,20 @@
         var serviceText   = "tasks";
         var sTextX = 250;
         var sTextY = 634;
+        
+        var bgTXT = "UGE";
+        var bgX = -10;
+        var bgY = 442;
+        var bgColor = "white";
+        var bgStyle = "295px Arial";
+        
         var csTextColor = "#ccc";     // "whitesmoke"; 
         var backgroundText = "plan";
         var backgroundTextColor = "#ccc";
         var backgroundTextStyle = "60px Arial";
         var bgTextX = 260;
         var bgTextY = 360;
+        
         var scoreTextX = 10;
         var scoreTextY = 500;
         
@@ -196,6 +204,7 @@
         
 		function init()
 		{
+            // TODO - to integrate into UGE Community Leaderboard
 			if(typeof(Storage) !== "undefined") {
 			    if(localStorage.highScore==undefined)
 			    {
@@ -236,11 +245,19 @@
 		}
         
         function createBackground() {
+            
+            var bgTxt = new createjs.Text(bgTXT, bgStyle, bgColor);
+            bgTxt.x = bgX;
+            bgTxt.y = bgY;
+            bgTxt.textBaseline = "alphabetic";
+            stage.addChild(bgTxt);
+            
             var text = new createjs.Text(backgroundText, backgroundTextStyle, backgroundTextColor);
             text.x = bgTextX;
             text.y = bgTextY;
             text.textBaseline = "alphabetic";
             stage.addChild(text);
+            
             var textRepo = new createjs.Text(repoText, repoTextStyle, backgroundTextColor);
             textRepo.x = repoTextX;
             textRepo.y = repoTextY;
